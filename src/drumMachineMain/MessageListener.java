@@ -6,15 +6,12 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 public class MessageListener implements ActionListener {
-	
-	
+		
 	private String sampleName = null; // string that is the name of the audio sample being called. 
 
 	public MessageListener(JButton hit, String sampleName) { //Method called from UI class containing the button pressed and a string representing the audio sample to be played
-		this.sampleName = sampleName;
-		
+		this.sampleName = sampleName;		
 	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -28,11 +25,5 @@ public class MessageListener implements ActionListener {
 			System.out.println("Button click " + sampleName);
 			UI.playSound(sampleName);
 		}
-	}
-	
-	
-	
-	
-	
-	
+	}	
 }

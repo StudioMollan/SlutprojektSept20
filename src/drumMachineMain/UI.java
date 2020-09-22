@@ -17,14 +17,15 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
-public class UI implements Runnable, ActionListener{
+public class UI implements Runnable, ActionListener {
 
 	private JFrame frame;
 
 	public UI() {
 	}
+
 	@Override
-	public void run() {				//Sets the main window of the application
+	public void run() { // Sets the main window of the application
 		frame = new JFrame("DrumMachine Player Window");
 		frame.setPreferredSize(new Dimension(800, 450));
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -34,7 +35,7 @@ public class UI implements Runnable, ActionListener{
 	}
 
 	private void createButtons(Container container) {
-		// Loads all buttons displayed on the applications main window. 
+		// Loads all buttons displayed on the applications main window.
 		GridLayout layout = new GridLayout(4, 3);
 		container.setLayout(layout);
 		JButton jButtonKick = new JButton("KICK");
@@ -44,7 +45,7 @@ public class UI implements Runnable, ActionListener{
 		JButton jButtonCymbal = new JButton("CYMBAL");
 		JButton jButtonClickON = new JButton("CLICK ON");
 		JButton jButtonClickOFF = new JButton("CLICK OFF");
-		// ArrayList containing all buttons. Ordered as intended by the programmer.  
+		// ArrayList containing all buttons. Ordered as intended by the programmer.
 		ArrayList<JButton> jButtonList = new ArrayList<JButton>();
 		jButtonList.add(jButtonKick);
 		jButtonList.add(jButtonHihat);
@@ -53,8 +54,9 @@ public class UI implements Runnable, ActionListener{
 		jButtonList.add(jButtonCymbal);
 		jButtonList.add(jButtonClickON);
 		jButtonList.add(jButtonClickOFF);
-		
-		//Loads all buttons into method MessageListener and adds an actionListener object. 
+
+		// Loads all buttons into method MessageListener and adds an actionListener
+		// object.
 		MessageListener kickPlayer = new MessageListener(jButtonKick, "Kick.wav");
 		jButtonKick.addActionListener(kickPlayer);
 		MessageListener SnarePlayer = new MessageListener(jButtonSnare, "Snare.wav");
@@ -69,11 +71,21 @@ public class UI implements Runnable, ActionListener{
 		jButtonClickON.addActionListener(ClickPlayerON);
 		MessageListener ClickPlayerOFF = new MessageListener(jButtonClickOFF, "ClickStop");
 		jButtonClickOFF.addActionListener(ClickPlayerOFF);
-				
-		// Sets two fonts used in the main window. 
+
+		// Loads all buttons into method KeyListen and adds an actionListener object.
+		KeyListen keyListener = new KeyListen();
+		jButtonKick.addKeyListener(keyListener);
+		jButtonSnare.addKeyListener(keyListener);
+		jButtonHihat.addKeyListener(keyListener);
+		jButtonHihatOpen.addKeyListener(keyListener);
+		jButtonCymbal.addKeyListener(keyListener);
+		jButtonClickON.addKeyListener(keyListener);
+		jButtonClickOFF.addKeyListener(keyListener);		
+
+		// Sets two fonts used in the main window.
 		Font font = new Font("Helvetica", Font.BOLD, 30);
 		Font ItalicFont = new Font("Helvetica", Font.ITALIC, 30);
-		// Sets above fonts to relevant buttons. 
+		// Sets above fonts to relevant buttons.
 		for (JButton i : jButtonList) {
 			i.setFont(font);
 			i.setForeground(Color.BLACK);
@@ -82,10 +94,10 @@ public class UI implements Runnable, ActionListener{
 		jButtonClickON.setFont(ItalicFont);
 		jButtonClickON.setForeground(Color.GREEN);
 		jButtonClickOFF.setFont(ItalicFont);
-		jButtonClickOFF.setForeground(Color.RED);		
+		jButtonClickOFF.setForeground(Color.RED);
 	}
 
-	public static void playSound(String soundName) { 		// Plays Clip representing the button pressed. 
+	public static void playSound(String soundName) { // Plays Clip representing the button pressed.
 		try {
 			AudioInputStream inStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
 			Clip clip = AudioSystem.getClip();
@@ -97,19 +109,20 @@ public class UI implements Runnable, ActionListener{
 		}
 	}
 
-	private static Clip activeClip;							// Instantiates a static Clip used to stop playback of Click loop. 
+	private static Clip activeClip; // Instantiates a static Clip used to stop playback of Click loop.
 
-	public static void playLoop(String soundName) {			// Separate player method for playing the audio sample 'Click.wav' as  an continuous loop.				
+	public static void playLoop(String soundName) { // Separate player method for playing the audio sample 'Click.wav'
+													// as an continuous loop.
 		try {
-			activeClip.stop();			
-		} catch (Exception e) {			
+			activeClip.stop();
+		} catch (Exception e) {
 			e.printStackTrace();
-		}				
-		try {			
+		}
+		try {
 			AudioInputStream inStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
 			Clip clip = AudioSystem.getClip();
 			clip.open(inStream);
-			activeClip =clip;
+			activeClip = clip;
 			clip.loop(Clip.LOOP_CONTINUOUSLY);
 		} catch (Exception ex) {
 			System.out.println("Error playing sound.");
@@ -117,11 +130,11 @@ public class UI implements Runnable, ActionListener{
 		}
 	}
 
-	public static void stopLoop(String soundName) {			// Separate player method for 
+	public static void stopLoop(String soundName) { // Separate player method for
 		activeClip.stop();
 	}
-	
-	public JFrame getFrame() {								//Method for calling the main window from the Main Class. 
+
+	public JFrame getFrame() { // Method for calling the main window from the Main Class.
 		return frame;
 	}
 
@@ -131,5 +144,4 @@ public class UI implements Runnable, ActionListener{
 
 	}
 
-	
 }
