@@ -116,7 +116,7 @@ public class UI implements Runnable, ActionListener {
 		try {
 			activeClip.stop();
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		try {
 			AudioInputStream inStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());

@@ -3,8 +3,7 @@ package drumMachineMain;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class KeyListen implements KeyListener{
-	
+public class KeyListen implements KeyListener{	
 
 	public KeyListen() {} 					//method that 'listens' to input from computer keyboard
 
@@ -28,15 +27,12 @@ public class KeyListen implements KeyListener{
 			UI.playSound("Cymb.wav");
 		}										
 	}
+	
 	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void keyPressed(KeyEvent e) {		
 	}
+	
 	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void keyReleased(KeyEvent e) {				
 	}
-
 }
