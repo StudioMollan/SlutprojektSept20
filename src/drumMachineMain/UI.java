@@ -57,19 +57,19 @@ public class UI implements Runnable, ActionListener {
 
 		// Loads all buttons into method MessageListener and adds an actionListener
 		// object.
-		MessageListener kickPlayer = new MessageListener(jButtonKick, "Kick.wav");
+		ClickListen kickPlayer = new ClickListen(jButtonKick, "Kick.wav");
 		jButtonKick.addActionListener(kickPlayer);
-		MessageListener SnarePlayer = new MessageListener(jButtonSnare, "Snare.wav");
+		ClickListen SnarePlayer = new ClickListen(jButtonSnare, "Snare.wav");
 		jButtonSnare.addActionListener(SnarePlayer);
-		MessageListener HihatPlayer = new MessageListener(jButtonHihat, "Hats.wav");
+		ClickListen HihatPlayer = new ClickListen(jButtonHihat, "Hats.wav");
 		jButtonHihat.addActionListener(HihatPlayer);
-		MessageListener HihatOpenPlayer = new MessageListener(jButtonHihatOpen, "HatsOpen.wav");
+		ClickListen HihatOpenPlayer = new ClickListen(jButtonHihatOpen, "HatsOpen.wav");
 		jButtonHihatOpen.addActionListener(HihatOpenPlayer);
-		MessageListener CymbalPlayer = new MessageListener(jButtonCymbal, "Cymb.wav");
+		ClickListen CymbalPlayer = new ClickListen(jButtonCymbal, "Cymb.wav");
 		jButtonCymbal.addActionListener(CymbalPlayer);
-		MessageListener ClickPlayerON = new MessageListener(jButtonClickON, "Click.wav");
+		ClickListen ClickPlayerON = new ClickListen(jButtonClickON, "Click.wav");
 		jButtonClickON.addActionListener(ClickPlayerON);
-		MessageListener ClickPlayerOFF = new MessageListener(jButtonClickOFF, "ClickStop");
+		ClickListen ClickPlayerOFF = new ClickListen(jButtonClickOFF, "ClickStop");
 		jButtonClickOFF.addActionListener(ClickPlayerOFF);
 
 		// Loads all buttons into method KeyListen and adds an actionListener object.
