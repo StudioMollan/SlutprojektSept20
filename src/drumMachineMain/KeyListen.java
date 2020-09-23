@@ -12,7 +12,7 @@ public class KeyListen implements KeyListener{
 		char keyChar = e.getKeyChar();	
 		
 		if (keyChar == '6') { 									// runs the Click sample in a loop. 			
-			UI.playLoop("Click.wav");
+			UI.playClick("Click.wav");
 			System.out.println("Key Press 'CLICK ON'");
 		} else if(keyChar == '7'){ 								// Turns of loop of click.wav		
 			UI.stopLoop("Click.wav");
@@ -35,11 +35,21 @@ public class KeyListen implements KeyListener{
 		}										
 	}
 	
+	
+	
 	@Override
 	public void keyPressed(KeyEvent e) {		
+		char keyChar = e.getKeyChar();
+		if (keyChar == '3') { 									// runs the Click sample in a loop. 			
+			UI.playLoop("Hats.wav");			
+		}
 	}
 	
 	@Override
-	public void keyReleased(KeyEvent e) {				
+	public void keyReleased(KeyEvent e) {	
+		char keyChar = e.getKeyChar();
+		if (keyChar == '3') { 									// runs the Click sample in a loop. 			
+			UI.stopLoop("Hats.wav");			
+		}
 	}
 }

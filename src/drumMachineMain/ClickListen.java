@@ -17,7 +17,7 @@ public class ClickListen implements ActionListener {
 		
 		if (sampleName == "Click.wav") { 		// runs the click.wav in a loop. 
 			System.out.println("Button click " + "'" + sampleName + "'");
-			UI.playLoop(sampleName);
+			UI.playClick(sampleName);
 		} else if(sampleName == "ClickStop"){ 	// Turns of loop of click.wav
 			System.out.println("Button click " + "'" + sampleName + "'");
 			UI.stopLoop(sampleName);

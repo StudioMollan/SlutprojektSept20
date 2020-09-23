@@ -80,7 +80,7 @@ public class UI implements Runnable, ActionListener {
 		jButtonHihatOpen.addKeyListener(keyListener);
 		jButtonCymbal.addKeyListener(keyListener);
 		jButtonClickON.addKeyListener(keyListener);
-		jButtonClickOFF.addKeyListener(keyListener);		
+		jButtonClickOFF.addKeyListener(keyListener);
 
 		// Sets two fonts used in the main window.
 		Font font = new Font("Helvetica", Font.BOLD, 30);
@@ -110,11 +110,30 @@ public class UI implements Runnable, ActionListener {
 	}
 
 	private static Clip activeClip; // Instantiates a static Clip used to stop playback of Click loop.
+	private static Clip activeClick;
 
-	public static void playLoop(String soundName) { // Separate player method for playing the audio sample 'Click.wav'
-													// as an continuous loop.
+	public static void playClick(String soundName) { // Separate player method for playing the audio sample 'Click.wav' as an continuous loop.
+													
 		try {
-			activeClip.stop();						// Makes sure that there can never be two loops simultaneously. 
+			activeClick.stop(); // Makes sure that there can never be two loops simultaneously.
+		} catch (Exception e) {
+		}
+		try {
+			AudioInputStream inStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
+			Clip clip = AudioSystem.getClip();
+			clip.open(inStream);
+			activeClick = clip;
+			clip.loop(Clip.LOOP_CONTINUOUSLY);
+		} catch (Exception ex) {
+			System.out.println("Error playing sound.");
+			ex.printStackTrace();
+		}
+	}
+
+	public static void playLoop(String soundName) { // Separate player method for playing an audio sample looped.
+		// as an continuous loop.
+		try {
+			activeClip.stop(); // Makes sure that there can never be two loops simultaneously.
 		} catch (Exception e) {
 		}
 		try {
@@ -129,8 +148,14 @@ public class UI implements Runnable, ActionListener {
 		}
 	}
 
-	public static void stopLoop(String soundName) { // Separate player method for
-		activeClip.stop();
+	public static void stopLoop(String soundName) { // Separate player method for stopping playback
+		if (soundName == "Click.wav") {
+			activeClick.stop();
+		} else if(soundName == "ClickStop"){
+			activeClick.stop();
+		} else {
+			activeClip.stop();
+		}
 	}
 
 	public JFrame getFrame() { // Method for calling the main window from the Main Class.
