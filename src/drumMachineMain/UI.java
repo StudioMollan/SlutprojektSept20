@@ -114,7 +114,7 @@ public class UI implements Runnable, ActionListener {
 	public static void playLoop(String soundName) { // Separate player method for playing the audio sample 'Click.wav'
 													// as an continuous loop.
 		try {
-			activeClip.stop();
+			activeClip.stop();						// Makes sure that there can never be two loops simultaneously. 
 		} catch (Exception e) {
 		}
 		try {
